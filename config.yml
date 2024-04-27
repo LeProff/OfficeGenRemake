@@ -1,0 +1,20 @@
+########## GENERAL PROJECT SETTINGS ##########
+
+# Execution settings
+minExecutions: 1 # default: 1
+
+# Multi-threading settings
+multiThreading: false # default: false
+threadPoolSize: 10 # default: 10
+
+# Output settings
+outputDir: "./companies/" # default: "output"
+
+########## COMPANY SETTINGS ##########
+
+# The type of data source to use for generating company data
+dataSource: "file" # default: "file"
+
+# The min & max for how many employees there should be in the building
+minEmployees: 200 #default: 200
+maxEmployees: 500 #default: 500
