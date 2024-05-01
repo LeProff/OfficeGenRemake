@@ -18,3 +18,9 @@ dataSource: "file" # default: "file"
 # The min & max for how many employees there should be in the building
 minEmployees: 200 #default: 200
 maxEmployees: 500 #default: 500
+
+# The size for each placable room type [width, height]
+defaultOfficeSize: [8, 10] #default: [8, 10]
+executiveOfficeSize: [12, 15] #default: [12, 15]
+meetingRoomSize: [10, 12] #default: [10, 12]
+boardRoomSize: [15, 20] #default: [15, 20]

@@ -2,6 +2,7 @@
 
 import os
 import multiprocessing as mp
+from re import X
 from svglib import SVG
 from company import Company
 
@@ -12,4 +13,6 @@ except:
     os.system("pip3 install --upgrade pyyaml")
 
     import yaml
+
+
 

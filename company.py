@@ -67,7 +67,7 @@ class Company:
         return envelope
     
     def pick_floor_layout(self, envelope: str) -> list[list[int]]:
-        layouts = os.listdir(f'data/envelopes/{envelope}')
+        layouts: list[str] = os.listdir(f'data/envelopes/{envelope}')
         if len(layouts) == 0:
             raise FileNotFoundError(f'No floor layouts found in envelope {envelope}')
         
@@ -76,15 +76,26 @@ class Company:
         
         width = int(temp.readline())
         height = int(temp.readline())
-        grid =[[0 for x in range(width)] for y in range(height)]a
+        grid =[[0 for x in range(width)] for y in range(height)]
         for i in range(height):
             line = temp.readline()
             for j in range(width):
                 grid[i][j] = int(line[j])
 
         return grid
+    
+    def generate_floors(self):
+        '''
+        Generates all the floors for the company
+        '''
+        departments: list = []
+        executives: list = []
+
+        # Generate all the rooms that need to be placed.
+        size = random.randint(self.config['minFloors'], self.config['maxFloors'])
+        for i in range(len(self.departments) - 2):
+            pass
+            
         
-
-
     def __repr__(self) -> str:
         return f'Company({self.name}, {self.description})'
