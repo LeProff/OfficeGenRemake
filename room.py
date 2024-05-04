@@ -14,6 +14,7 @@ class Room:
         self.executive = executive
         self.special = False
         self.special_id = 0
+        self.config = config
 
     def add_point(self, point: tuple) -> None:
         '''

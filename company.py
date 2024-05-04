@@ -2,8 +2,6 @@
 
 import random
 import os
-import re
-from turtle import width
 
 class Company:
     '''Company class for storing company information'''
@@ -95,7 +93,7 @@ class Company:
         size = random.randint(self.config['minFloors'], self.config['maxFloors'])
         for i in range(len(self.departments) - 2):
             pass
-            
         
     def __repr__(self) -> str:
         return f'Company({self.name}, {self.description})'
+    

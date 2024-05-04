@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 
-from math import nan
-from multiprocessing import Value
-
+import random
 from room import Room
 from svglib import SVG
 
@@ -13,6 +11,7 @@ class Floor:
         self.floor = grid
         self.rooms = []
         self.joined_rooms = []
+        self.config = config
 
     def set_tile(self, point: tuple, value) -> bool:
         '''
@@ -77,13 +76,45 @@ class Floor:
         Returns:
             bool: If the room was placed
         '''
-        pass
+        dimentions = self.get_dimentions()
+        for y in range(dimentions[1]):
+            for x in range(dimentions[0]):
+                if random.randint(0, 1) == 0:
+                    if room.place_vertical(self, (x, y)):
+                        self.rooms.append(room)
+                        return True
+                    elif room.place_horizontal(self, (x, y)):
+                        self.rooms.append(room)
+                        return True
+                else:
+                    if room.place_horizontal(self, (x, y)):
+                        self.rooms.append(room)
+                        return True
+                    elif room.place_vertical(self, (x, y)):
+                        self.rooms.append(room)
+                        return True
+        return False
 
     def fill_empty_space(self) -> None:
         '''
         Fills empty space on the floor
         '''
         pass
+
+    def check_full(self) -> bool:
+        '''
+        Checks if the floor is full
+
+        Returns:
+            bool: If the floor is full
+        '''
+        dimentions = self.get_dimentions()
+        for y in range(dimentions[1]):
+            for x in range(dimentions[0]):
+                if self.get_tile((x, y)) == 0:
+                    return False
+        
+        return True
 
     def connect_rooms(self) -> None:
         '''
@@ -93,7 +124,7 @@ class Floor:
 
     def find_connected_rooms(self, room: Room) -> list:
         '''
-        Finds all connected rooms to a room
+        Finds all connected rooms to an initial room
 
         Args:
             room (Room): Room to find connections to
@@ -107,7 +138,23 @@ class Floor:
         '''
         Adds specialty rooms to the floor
         '''
-        pass
+        dimentions = self.get_dimentions()
+        for y in range(dimentions[1]):
+            for x in range(dimentions[0]):
+                special_id = -1
+                if self.get_tile((x, y)) == 2:
+                    special_id = 2
+                elif self.get_tile((x, y)) == 4:
+                    special_id = 4
+                elif self.get_tile((x, y)) == 5:
+                    special_id = 5
+
+                if special_id != -1:
+                    room = Room(-special_id, False, self.config)
+                    room.special = True
+                    room.special_id = special_id
+                    room.add_point((x, y))
+                    self.rooms.append(room)
 
     def output(self, path: str) -> None:
         '''
@@ -160,7 +207,7 @@ class Floor:
         pass
 
     def __repr__(self) -> str:
-        pass
+        return ""
 
     def __str__(self) -> str:
-        pass
+        return ""
