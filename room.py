@@ -5,18 +5,24 @@ from floor import Floor
 
 class Room:
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self, department: int, executive: bool, config: dict) -> None:
+        self.points: list[tuple] = []
+        self.corners: list[tuple] = []
+        self.floor = None
+        self.people = 1
+        self.department = department
+        self.executive = executive
+        self.special = False
+        self.special_id = 0
 
-    def add_point(self, x: int, y: int) -> None:
+    def add_point(self, point: tuple) -> None:
         '''
         Adds a point to the room
 
         Args:
-            x (int): X coordinate
-            y (int): Y coordinate
+            points (tuple): Point to add
         '''
-        pass
+        self.points.append(point)
 
     def get_dimentions(self) -> tuple:
         '''
